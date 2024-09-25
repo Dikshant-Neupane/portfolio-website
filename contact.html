@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - DIKSHANT NEUPANE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #FF0000, #000000);
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #D3D3D3;
+            overflow-x: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('path/to/your/background-image.jpg') center/cover no-repeat;
+            opacity: 0.1;
+            animation: pulse 20s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-container p {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #D4B0D1;
+        }
+
+        .contact-link {
+            color: #FF6347;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: #FFF;
+        }
+
+        .taskbar {
+            position: fixed;
+            left: -200px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 200px;
+            background-color: rgba(51, 51, 51, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            transition: left 0.5s ease;
+            z-index: 1000;
+        }
+
+        .taskbar a {
+            color: #FFF;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .taskbar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .home-button {
+            position: fixed;
+            left: 10px;
+            top: 20px;
+            background: linear-gradient(90deg, #FF4500, #FF0000);
+            color: #FFF;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 1.2em;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            color: #D3D3D3;
+        }
+
+        footer a {
+            color: #D3D3D3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <div class="header">
+        <h1>Contact Me</h1>
+    </div>
+
+    <div class="contact-container">
+        <p>If you'd like to get in touch, feel free to reach out through any of the platforms below:</p>
+        <p>Email: <a class="contact-link" href="mailto:dikshantneupane690@gmail.com">dikshantneupane690@gmail.com</a></p>
+        <p>Follow me on:</p>
+        <p>
+            <a class="contact-link" href="https://www.facebook.com/dikshant.neupane.5" target="_blank"><i class="fab fa-facebook-square"></i> Facebook</a><br>
+            <a class="contact-link" href="https://www.instagram.com/dikshant__neupane/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><br>
+            <a class="contact-link" href="https://www.linkedin.com/in/dikshant-neupane-a64b09326/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </p>
+    </div>
+
+    <button class="home-button" onclick="toggleTaskbar()">Home</button>
+
+    <div class="taskbar" id="taskbar">
+        <a href="home.html" onclick="highlight(this)">Home</a>
+        <a href="about.html" onclick="highlight(this)">About Me</a>
+        <a href="project.html" onclick="highlight(this)">Projects</a>
+        <a href="contact.html" onclick="highlight(this)">Contact</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Dikshant Neupane</p>
+    </footer>
+
+    <script>
+        // Function to toggle the taskbar
+        function toggleTaskbar() {
+            const taskbar = document.getElementById('taskbar');
+            taskbar.style.left = (taskbar.style.left === '0px') ? '-200px' : '0px'; // Toggle visibility
+        }
+
+        // Function to highlight the clicked link
+        function highlight(selectedLink) {
+            const links = document.querySelectorAll('.taskbar a');
+            links.forEach(link => {
+                link.classList.remove('active');
+            });
+            selectedLink.classList.add('active');
+
+            // Store the current page in local storage
+            localStorage.setItem('activePage', selectedLink.getAttribute('href'));
+        }
+
+        // Highlight the correct link based on the current page
+        document.addEventListener("DOMContentLoaded", function() {
+            const activePage = localStorage.getItem('activePage') || 'contact.html'; // Default to "Contact"
+            const activeLink = document.querySelector(`.taskbar a[href="${activePage}"]`);
+            if (activeLink) {
+                highlight(activeLink);
+            }
+        });
+    </script>
+</body>
+</html>
