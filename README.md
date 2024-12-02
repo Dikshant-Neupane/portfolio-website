@@ -14,4 +14,5 @@ To run this project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/dikshantneupane/Dikshatnt,s portfolio.git
+  git clone https://github.com/dikshantneupane/Dikshants-portfolio.git
+
